@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import ValidationComponent from "./ValidationComponent/ValidationComponent";
 import CharComponent from "./CharComponent/CharComponent";
-import { StyledP } from "./CustomStyles";
 
 class App extends Component {
   state = {
@@ -31,13 +30,12 @@ class App extends Component {
           letter={letter}
           click={() => this.removeLetter(index)}
           key={index}
-          length={this.state.letters.length}
         />
       );
     });
 
     return (
-      <div className="App">
+      <div className={`${styles.App} ${this.state.letters.length > 4 ? styles.Go : ""}`}>
         {/* <ol>
           <li>Create an input field (in App component) with a change listener which outputs the length of the entered text below it (e.g. in a paragraph).</li>
           <li>Create a new component (=> ValidationComponent) which receives the text length as a prop</li>
@@ -53,12 +51,12 @@ class App extends Component {
           onChange={this.lettersHandler}
           value={this.state.letters.join("")}
         />
-        <StyledP style={{ color: "black" }} length={this.state.letters.length}>
-          {this.state.letters.length}
-        </StyledP>
+        <div className={styles.Test}>
+          <p className={this.state.letters.length > 4 ? styles.Active : null}>{this.state.letters.length}</p>
+        </div>
 
         <ValidationComponent length={this.state.letters.length} />
-        <div className="letters-wrapper">{chars}</div>
+        <div className={styles.LettersWrapper}>{chars}</div>
       </div>
     );
   }
