@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "./App.module.css";
-import ValidationComponent from "./ValidationComponent/ValidationComponent";
-import CharComponent from "./CharComponent/CharComponent";
+import Cockpit from "../Components/Cockpit/Cockpit";
+import CharacterList from "../Components/CharacterList/CharacterList";
 
 class App extends Component {
   state = {
@@ -24,18 +24,12 @@ class App extends Component {
   };
 
   render() {
-    const chars = this.state.letters.map((letter, index) => {
-      return (
-        <CharComponent
-          letter={letter}
-          click={() => this.removeLetter(index)}
-          key={index}
-        />
-      );
-    });
-
     return (
-      <div className={`${styles.App} ${this.state.letters.length > 4 ? styles.Go : ""}`}>
+      <div
+        className={`${styles.App} ${
+          this.state.letters.length > 4 ? "dark" : ""
+        }`}
+      >
         {/* <ol>
           <li>Create an input field (in App component) with a change listener which outputs the length of the entered text below it (e.g. in a paragraph).</li>
           <li>Create a new component (=> ValidationComponent) which receives the text length as a prop</li>
@@ -46,17 +40,11 @@ class App extends Component {
         </ol>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p> */}
 
-        <input
-          type="text"
-          onChange={this.lettersHandler}
-          value={this.state.letters.join("")}
+        <Cockpit change={this.lettersHandler} letters={this.state.letters} />
+        <CharacterList
+          letters={this.state.letters}
+          clicked={this.removeLetter}
         />
-        <div className={styles.Test}>
-          <p className={this.state.letters.length > 4 ? styles.Active : null}>{this.state.letters.length}</p>
-        </div>
-
-        <ValidationComponent length={this.state.letters.length} />
-        <div className={styles.LettersWrapper}>{chars}</div>
       </div>
     );
   }
