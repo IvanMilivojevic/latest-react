@@ -9,6 +9,7 @@ class App extends Component {
   };
 
   lettersHandler = (event) => {
+    console.log("app handle");
     this.setState({
       letters: event.target.value.split(""),
     });
@@ -23,7 +24,22 @@ class App extends Component {
     });
   };
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("app should");
+    return true;
+  }
+
+  componentDidMount() {
+    console.log("app mounted");
+  }
+
+  componentDidUpdate() {
+    console.log("app updated");
+  }
+
   render() {
+    console.log("app render");
+
     return (
       <div
         className={`${styles.App} ${
@@ -41,10 +57,12 @@ class App extends Component {
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p> */}
 
         <Cockpit change={this.lettersHandler} letters={this.state.letters} />
-        <CharacterList
-          letters={this.state.letters}
-          clicked={this.removeLetter}
-        />
+        {this.state.letters.length ? (
+          <CharacterList
+            letters={this.state.letters}
+            clicked={this.removeLetter}
+          />
+        ) : null}
       </div>
     );
   }

@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Char = (props) => {
+  useEffect(() => {
+    console.log("char render");
+    return () => {
+      console.log("char unmounted");
+    };
+  });
+
   const style = {
     display: "inline-block",
     padding: "16px",
