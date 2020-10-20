@@ -6,7 +6,7 @@ const Char = (props) => {
     return () => {
       console.log("char unmounted");
     };
-  });
+  }, []);
 
   const style = {
     display: "inline-block",

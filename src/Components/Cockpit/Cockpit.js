@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./Cockpit.module.css";
 import Validation from "./Validation/Validation";
+import Box from "../Hoc/Box";
 
 const Cockpit = (props) => {
   return (
-    <div>
+    <Box component="span">
       <input
         type="text"
         onChange={props.change}
@@ -16,7 +17,7 @@ const Cockpit = (props) => {
         </p>
       </div>
       <Validation length={props.letters.length} />
-    </div>
+    </Box>
   );
 };
 
