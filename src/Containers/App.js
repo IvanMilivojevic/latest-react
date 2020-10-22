@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import styles from "./App.module.css";
 import Cockpit from "../Components/Cockpit/Cockpit";
 import CharacterList from "../Components/CharacterList/CharacterList";
+import { ThemeContext } from "../Components/Context/ThemeContext";
 
 class App extends Component {
   state = {
     letters: [],
+    theme: "light",
   };
 
   lettersHandler = (event) => {
@@ -37,6 +39,15 @@ class App extends Component {
     console.log("app updated");
   }
 
+  themeToggleHandler = () => {
+    this.setState((prevState, props) => {
+      const theme = prevState.theme === "dark" ? "light" : "dark";
+      return {
+        theme: theme,
+      };
+    });
+  };
+
   render() {
     console.log("app render");
 
@@ -56,13 +67,17 @@ class App extends Component {
         </ol>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p> */}
 
-        <Cockpit change={this.lettersHandler} letters={this.state.letters} />
-        {this.state.letters.length ? (
-          <CharacterList
-            letters={this.state.letters}
-            clicked={this.removeLetter}
-          />
-        ) : null}
+        <ThemeContext.Provider
+          value={{ theme: this.state.theme, setTheme: this.themeToggleHandler }}
+        >
+          <Cockpit change={this.lettersHandler} letters={this.state.letters} />
+          {this.state.letters.length ? (
+            <CharacterList
+              letters={this.state.letters}
+              clicked={this.removeLetter}
+            />
+          ) : null}
+        </ThemeContext.Provider>
       </div>
     );
   }
