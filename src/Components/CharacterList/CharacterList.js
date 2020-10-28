@@ -30,7 +30,8 @@ class CharacterList extends Component {
           <Char
             letter={letter}
             click={() => this.props.clicked(index)}
-            key={letter}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
           />
         ))}
       </div>

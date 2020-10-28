@@ -5,16 +5,8 @@ import ThemeContext from "../../Context/ThemeContext";
 class Char extends Component {
   inputRef = React.createRef();
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      number: 0,
-    };
-  }
-
   componentDidMount() {
-    console.log(this.inputRef.current, this.state);
+    console.log(this.inputRef.current);
   }
 
   render() {
