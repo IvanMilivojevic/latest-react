@@ -1,15 +1,16 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Char from "./Char/Char";
 import styles from "./CharacterList.module.css";
 
 class CharacterList extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("list should");
-    return true;
-  }
-
   componentDidMount() {
     console.log("list mounted");
+  }
+
+  shouldComponentUpdate() {
+    console.log("list should");
+    return true;
   }
 
   componentDidUpdate() {
@@ -29,12 +30,17 @@ class CharacterList extends Component {
           <Char
             letter={letter}
             click={() => this.props.clicked(index)}
-            key={index}
+            key={letter}
           />
         ))}
       </div>
     );
   }
 }
+
+CharacterList.propTypes = {
+  letters: PropTypes.array,
+  clicked: PropTypes.func,
+};
 
 export default CharacterList;

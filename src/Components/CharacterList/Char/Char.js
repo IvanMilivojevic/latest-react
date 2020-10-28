@@ -1,29 +1,21 @@
 import React, { Component } from "react";
-import { ThemeContext } from "../../Context/ThemeContext";
+import PropTypes from "prop-types";
+import ThemeContext from "../../Context/ThemeContext";
 
 class Char extends Component {
-  state = {
-    number: 0,
-  };
-
-  // useEffect(() => {
-  //   console.log("char render");
-  //   return () => {
-  //     console.log("char unmounted");
-  //   };
-  // }, []);
-
-  // constructor(props) {
-  //   super(props);
-  // }
-
   inputRef = React.createRef();
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      number: 0,
+    };
+  }
 
   componentDidMount() {
     console.log(this.inputRef.current, this.state);
   }
-
-  static contextType = ThemeContext;
 
   render() {
     const style = {
@@ -39,11 +31,24 @@ class Char extends Component {
     style.backgroundColor = this.context.theme === "light" ? "red" : "black";
 
     return (
-      <span style={style} onClick={this.props.click} ref={this.inputRef}>
+      <span
+        style={style}
+        onClick={this.props.click}
+        onKeyDown={this.props.click}
+        ref={this.inputRef}
+        role="button"
+        tabIndex="0"
+      >
         {this.props.letter}
       </span>
     );
   }
 }
+Char.contextType = ThemeContext;
+
+Char.propTypes = {
+  click: PropTypes.func.isRequired,
+  letter: PropTypes.string,
+};
 
 export default Char;

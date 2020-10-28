@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./Cockpit.module.css";
 import Validation from "./Validation/Validation";
 import Box from "../Hoc/Box";
@@ -19,6 +20,11 @@ const Cockpit = (props) => {
       <Validation length={props.letters.length} />
     </Box>
   );
+};
+
+Cockpit.propTypes = {
+  change: PropTypes.func,
+  letters: PropTypes.array,
 };
 
 export default Cockpit;

@@ -1,8 +1,9 @@
 import React from "react";
-import { Wrapper } from "../../Hoc/Wrapper";
+import PropTypes from "prop-types";
+import Wrapper from "../../Hoc/Wrapper";
 import withClass from "../../Hoc/withClass";
 import styles from "./Validation.module.css";
-import { ThemeContext } from "../../Context/ThemeContext";
+import ThemeContext from "../../Context/ThemeContext";
 
 const Validation = (props) => {
   const lengthResult =
@@ -14,12 +15,22 @@ const Validation = (props) => {
         return (
           <Wrapper>
             {lengthResult}
-            <button style={{marginLeft: "10px"}} onClick={context.setTheme}>Toggle Theme</button>
+            <button
+              style={{ marginLeft: "10px" }}
+              onClick={context.setTheme}
+              type="button"
+            >
+              Toggle Theme
+            </button>
           </Wrapper>
         );
       }}
     </ThemeContext.Consumer>
   );
+};
+
+Validation.propTypes = {
+  length: PropTypes.number,
 };
 
 export default withClass(Validation, styles.Validation);

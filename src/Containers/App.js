@@ -2,13 +2,30 @@ import React, { Component } from "react";
 import styles from "./App.module.css";
 import Cockpit from "../Components/Cockpit/Cockpit";
 import CharacterList from "../Components/CharacterList/CharacterList";
-import { ThemeContext } from "../Components/Context/ThemeContext";
+import ThemeContext from "../Components/Context/ThemeContext";
 
 class App extends Component {
-  state = {
-    letters: [],
-    theme: "light",
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      letters: [],
+      theme: "light",
+    };
+  }
+
+  componentDidMount() {
+    console.log("app mounted");
+  }
+
+  shouldComponentUpdate() {
+    console.log("app should");
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log("app updated");
+  }
 
   lettersHandler = (event) => {
     console.log("app handle");
@@ -18,33 +35,19 @@ class App extends Component {
   };
 
   removeLetter = (index) => {
-    const letters = [...this.state.letters];
-    letters.splice(index, 1);
+    this.setState((prevState) => {
+      const letters = [...prevState.letters];
+      letters.splice(index, 1);
 
-    this.setState({
-      letters: letters,
+      return { letters };
     });
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("app should");
-    return true;
-  }
-
-  componentDidMount() {
-    console.log("app mounted");
-  }
-
-  componentDidUpdate() {
-    console.log("app updated");
-  }
-
   themeToggleHandler = () => {
-    this.setState((prevState, props) => {
+    this.setState((prevState) => {
       const theme = prevState.theme === "dark" ? "light" : "dark";
-      return {
-        theme: theme,
-      };
+
+      return { theme };
     });
   };
 
