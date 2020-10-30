@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./App.module.css";
 import Cockpit from "../Components/Cockpit/Cockpit";
 import CharacterList from "../Components/CharacterList/CharacterList";
+import PostsList from "../Components/PostsList/PostsList";
 import ThemeContext from "../Components/Context/ThemeContext";
 
 class App extends Component {
@@ -55,11 +56,7 @@ class App extends Component {
     console.log("app render");
 
     return (
-      <div
-        className={`${styles.App} ${
-          this.state.letters.length > 4 ? "dark" : ""
-        }`}
-      >
+      <div className={`${styles.App} ${this.state.letters.length > 4 ? "dark" : ""}`}>
         {/* <ol>
           <li>Create an input field (in App component) with a change listener which outputs the length of the entered text below it (e.g. in a paragraph).</li>
           <li>Create a new component (=> ValidationComponent) which receives the text length as a prop</li>
@@ -70,17 +67,13 @@ class App extends Component {
         </ol>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p> */}
 
-        <ThemeContext.Provider
-          value={{ theme: this.state.theme, setTheme: this.themeToggleHandler }}
-        >
+        <ThemeContext.Provider value={{ theme: this.state.theme, setTheme: this.themeToggleHandler }}>
           <Cockpit change={this.lettersHandler} letters={this.state.letters} />
           {this.state.letters.length ? (
-            <CharacterList
-              letters={this.state.letters}
-              clicked={this.removeLetter}
-            />
+            <CharacterList letters={this.state.letters} clicked={this.removeLetter} />
           ) : null}
         </ThemeContext.Provider>
+        <PostsList />
       </div>
     );
   }

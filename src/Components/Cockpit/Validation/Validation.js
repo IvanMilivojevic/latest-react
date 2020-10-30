@@ -6,8 +6,7 @@ import styles from "./Validation.module.css";
 import ThemeContext from "../../Context/ThemeContext";
 
 const Validation = (props) => {
-  const lengthResult =
-    props.length >= 5 ? "Text long enough" : "Text too short";
+  const lengthResult = props.length >= 5 ? "Text long enough" : "Text too short";
 
   return (
     <ThemeContext.Consumer>
@@ -15,11 +14,7 @@ const Validation = (props) => {
         return (
           <Wrapper>
             {lengthResult}
-            <button
-              style={{ marginLeft: "10px" }}
-              onClick={context.setTheme}
-              type="button"
-            >
+            <button style={{ marginLeft: "10px" }} onClick={context.setTheme} type="button">
               Toggle Theme
             </button>
           </Wrapper>
