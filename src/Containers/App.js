@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styles from "./App.module.css";
 import Cockpit from "../Components/Cockpit/Cockpit";
 import CharacterList from "../Components/CharacterList/CharacterList";
-import PostsList from "../Components/PostsList/PostsList";
+import PostsList from "./PostsList/PostsList";
 import Header from "../Components/Header/Header";
 import ThemeContext from "../Components/Context/ThemeContext";
 
