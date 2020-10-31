@@ -5,5 +5,15 @@ const AxiosPosts = Axios.create({
 });
 
 AxiosPosts.defaults.headers.common["Authorization"] = "POSTS TOKEN";
+AxiosPosts.interceptors.request.use(
+  (req) => {
+    console.log(req);
+    return req;
+  },
+  (error) => {
+    console.log(error);
+    return Promise.reject(error);
+  }
+);
 
 export default AxiosPosts;
