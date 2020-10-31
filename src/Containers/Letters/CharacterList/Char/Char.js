@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ThemeContext from "../../Context/ThemeContext";
+import ThemeContext from "../../../../Components/Context/ThemeContext";
 
 class Char extends Component {
   inputRef = React.createRef();

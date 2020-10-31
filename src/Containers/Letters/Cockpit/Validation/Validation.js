@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Wrapper from "../../Hoc/Wrapper";
-import withClass from "../../Hoc/withClass";
+import Wrapper from "../../../../Components/Hoc/Wrapper";
+import withClass from "../../../../Components/Hoc/withClass";
 import styles from "./Validation.module.css";
-import ThemeContext from "../../Context/ThemeContext";
+import ThemeContext from "../../../../Components/Context/ThemeContext";
 
 const Validation = (props) => {
   const lengthResult = props.length >= 5 ? "Text long enough" : "Text too short";
