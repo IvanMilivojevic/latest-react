@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Components/Header/Header";
 import ThemeContext from "../Components/Context/ThemeContext";
+import Letters from "./Letters/Letters";
+import PostsLists from "./PostsList/PostsList";
 
 class App extends Component {
   constructor(props) {
@@ -35,11 +38,15 @@ class App extends Component {
 
   render() {
     return (
-      <ThemeContext.Provider value={{ theme: this.state.theme, setTheme: this.themeToggleHandler }}>
-        <div className={styles.App}>
-          <Header />
-        </div>
-      </ThemeContext.Provider>
+      <BrowserRouter>
+        <ThemeContext.Provider value={{ theme: this.state.theme, setTheme: this.themeToggleHandler }}>
+          <div className={styles.App}>
+            <Header />
+            <Route path="/" exact component={Letters} />
+            <Route path="/posts" exact component={PostsLists} />
+          </div>
+        </ThemeContext.Provider>
+      </BrowserRouter>
     );
   }
 }

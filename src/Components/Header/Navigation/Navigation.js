@@ -1,17 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Navigation.module.css";
 
 const Navigation = () => {
   return (
     <ul className={styles.Nav}>
       <li>
-        <a href="/">Home</a>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <a href="/posts">Posts</a>
+        <Link to="/posts">Posts</Link>
       </li>
       <li>
-        <a href="/featured">Featured</a>
+        <Link to="/featured">Featured</Link>
       </li>
     </ul>
   );

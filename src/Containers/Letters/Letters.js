@@ -11,6 +11,10 @@ class Letters extends Component {
     };
   }
 
+  componentWillUnmount() {
+    console.log("letters unmount");
+  }
+
   lettersHandler = (event) => {
     this.setState({
       letters: event.target.value.split(""),

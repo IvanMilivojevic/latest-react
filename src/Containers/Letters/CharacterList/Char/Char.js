@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ThemeContext from "../../../../Components/Context/ThemeContext";
+import withTheme from "../../../../Components/Hoc/withTheme";
 
 class Char extends Component {
   inputRef = React.createRef();
 
   componentDidMount() {
-    console.log(this.inputRef.current);
+    console.log(this.props);
   }
 
   render() {
@@ -20,7 +20,7 @@ class Char extends Component {
       color: "white",
     };
 
-    style.backgroundColor = this.context.theme === "light" ? "red" : "black";
+    style.backgroundColor = this.props.themeContext.theme === "light" ? "red" : "black";
 
     return (
       <span
@@ -36,11 +36,11 @@ class Char extends Component {
     );
   }
 }
-Char.contextType = ThemeContext;
 
 Char.propTypes = {
   click: PropTypes.func.isRequired,
   letter: PropTypes.string,
+  themeContext: PropTypes.object,
 };
 
-export default Char;
+export default withTheme(Char);

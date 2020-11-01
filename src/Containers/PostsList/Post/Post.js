@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import styles from "./Post.module.css";
 
 const Post = (props) => {
@@ -17,4 +18,4 @@ Post.propTypes = {
   click: PropTypes.func,
 };
 
-export default Post;
+export default withRouter(Post);
