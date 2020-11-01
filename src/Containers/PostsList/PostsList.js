@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Axios from "../../Axios/AxiosPosts";
 import Post from "./Post/Post";
 
@@ -8,7 +9,6 @@ class PostsLists extends Component {
 
     this.state = {
       posts: [],
-      featured: null,
     };
   }
 
@@ -30,7 +30,7 @@ class PostsLists extends Component {
   }
 
   setFeatured = (id) => {
-    this.setState({ featured: id });
+    this.props.history.push(`/${id}`);
   };
 
   render() {
@@ -44,5 +44,9 @@ class PostsLists extends Component {
     );
   }
 }
+
+PostsLists.propTypes = {
+  history: PropTypes.object,
+};
 
 export default PostsLists;

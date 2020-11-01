@@ -12,23 +12,28 @@ class FeaturedPost extends Component {
     };
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
+    console.log(this.props);
     if (
-      (this.props.postId && !this.state.featuredPost) ||
-      (this.state.featuredPost && this.props.postId !== this.state.featuredPost.id)
+      (this.props.match.params.id && !this.state.featuredPost) ||
+      (this.state.featuredPost && this.props.match.params.id !== this.state.featuredPost.id)
     ) {
-      Axios.get(`/posts/${this.props.postId}`).then((response) => {
-        console.log(response);
+      Axios.get(`/posts/${this.props.match.params.id}`)
+        .then((response) => {
+          console.log(response);
 
-        this.setState({
-          featuredPost: response.data,
+          this.setState({
+            featuredPost: response.data,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
         });
-      });
     }
   }
 
   render() {
-    let featuredContent = <div>Please select a post</div>;
+    let featuredContent = <div>Loading post ...</div>;
 
     if (this.state.featuredPost) {
       featuredContent = (
@@ -44,7 +49,7 @@ class FeaturedPost extends Component {
 }
 
 FeaturedPost.propTypes = {
-  postId: PropTypes.number,
+  match: PropTypes.object,
 };
 
 export default FeaturedPost;
