@@ -4,8 +4,7 @@ import styles from "./App.module.css";
 import Header from "../Components/Header/Header";
 import ThemeContext from "../Components/Context/ThemeContext";
 import Letters from "./Letters/Letters";
-import PostsLists from "./PostsList/PostsList";
-import FeaturedPost from "./FeaturedPost/FeaturedPost";
+import PostsList from "./PostsList/PostsList";
 
 class App extends Component {
   constructor(props) {
@@ -45,8 +44,7 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path="/" exact component={Letters} />
-              <Route path="/posts" exact component={PostsLists} />
-              <Route path="/:id" exact component={FeaturedPost} />
+              <Route path="/posts" component={PostsList} />
             </Switch>
           </div>
         </ThemeContext.Provider>

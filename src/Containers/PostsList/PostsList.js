@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import Axios from "../../Axios/AxiosPosts";
 import Post from "./Post/Post";
+import FeaturedPost from "../FeaturedPost/FeaturedPost";
 
 class PostsLists extends Component {
   constructor(props) {
@@ -30,7 +32,7 @@ class PostsLists extends Component {
   }
 
   setFeatured = (id) => {
-    this.props.history.push(`/${id}`);
+    this.props.history.push(`/posts/${id}`);
   };
 
   render() {
@@ -40,6 +42,7 @@ class PostsLists extends Component {
         {this.state.posts.map((post) => {
           return <Post title={post.title} author={post.author} key={post.id} click={() => this.setFeatured(post.id)} />;
         })}
+        <Route path="/posts/:id" exact component={FeaturedPost} />
       </div>
     );
   }

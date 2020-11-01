@@ -13,10 +13,18 @@ class FeaturedPost extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    this.checkFeatured();
+  }
+
+  componentDidUpdate() {
+    console.log("feat update");
+    this.checkFeatured();
+  }
+
+  checkFeatured() {
     if (
       (this.props.match.params.id && !this.state.featuredPost) ||
-      (this.state.featuredPost && this.props.match.params.id !== this.state.featuredPost.id)
+      (this.state.featuredPost && +this.props.match.params.id !== this.state.featuredPost.id)
     ) {
       Axios.get(`/posts/${this.props.match.params.id}`)
         .then((response) => {
@@ -33,6 +41,7 @@ class FeaturedPost extends Component {
   }
 
   render() {
+    console.log(this.props);
     let featuredContent = <div>Loading post ...</div>;
 
     if (this.state.featuredPost) {
