@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Axios from "axios";
 import styles from "./FeaturedPost.module.css";
@@ -61,4 +62,4 @@ FeaturedPost.propTypes = {
   match: PropTypes.object,
 };
 
-export default FeaturedPost;
+export default withRouter(FeaturedPost);

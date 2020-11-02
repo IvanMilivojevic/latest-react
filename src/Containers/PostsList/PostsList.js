@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import Axios from "../../Axios/AxiosPosts";
 import Post from "./Post/Post";
-import FeaturedPost from "../FeaturedPost/FeaturedPost";
+
+const FeaturedPost = React.lazy(() => import("../FeaturedPost/FeaturedPost"));
 
 class PostsLists extends Component {
   constructor(props) {
@@ -36,13 +37,20 @@ class PostsLists extends Component {
   };
 
   render() {
-    console.log(this.state.featured);
     return (
       <div>
         {this.state.posts.map((post) => {
           return <Post title={post.title} author={post.author} key={post.id} click={() => this.setFeatured(post.id)} />;
         })}
-        <Route path="/posts/:id" exact component={FeaturedPost} />
+        <Route
+          path="/posts/:id"
+          exact
+          render={() => (
+            <Suspense fallback={<div>Loading...</div>}>
+              <FeaturedPost />
+            </Suspense>
+          )}
+        />
       </div>
     );
   }
