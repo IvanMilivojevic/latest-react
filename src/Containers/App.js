@@ -5,6 +5,7 @@ import Header from "../Components/Header/Header";
 import ThemeContext from "../Components/Context/ThemeContext";
 import Letters from "./Letters/Letters";
 import PostsList from "./PostsList/PostsList";
+import NewPost from "./NewPost/NewPost";
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={Letters} />
               <Route path="/posts" component={PostsList} />
+              <Route path="/new-post" component={NewPost} />
             </Switch>
           </div>
         </ThemeContext.Provider>

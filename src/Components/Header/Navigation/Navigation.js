@@ -13,6 +13,9 @@ const Navigation = () => {
       <li>
         <NavLink to="/posts">Posts</NavLink>
       </li>
+      <li>
+        <NavLink to="/new-post">New Post</NavLink>
+      </li>
     </ul>
   );
 };
