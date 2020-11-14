@@ -6,7 +6,7 @@ class Char extends Component {
   inputRef = React.createRef();
 
   componentDidMount() {
-    console.log(this.props);
+    console.log(this.props, this.inputRef.current);
   }
 
   render() {

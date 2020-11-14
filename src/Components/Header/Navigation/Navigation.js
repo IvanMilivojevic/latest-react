@@ -6,12 +6,14 @@ const Navigation = () => {
   return (
     <ul className={styles.Nav}>
       <li>
-        <NavLink to="/" exact>
+        <NavLink to="/" activeClassName={styles.ActiveLink} exact>
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to="/posts">Posts</NavLink>
+        <NavLink to="/posts" activeClassName={styles.ActiveLink}>
+          Posts
+        </NavLink>
       </li>
       <li>
         <NavLink to="/new-post">New Post</NavLink>
